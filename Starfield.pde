@@ -38,7 +38,9 @@ class NormalParticle implements Particle
   float x,y,speed,angle;
   int size;
   color clr;
+  int greyscale;
   NormalParticle(){
+    greyscale = (int)(Math.random()*230);
     clr=color(greyscale+(int)(Math.random()*40-20),greyscale+(int)(Math.random()*40-20),greyscale+(int)(Math.random()*40-20));
     x=(float)Math.random()*50+225;
     y=(float)Math.random()*50+225;
@@ -74,17 +76,18 @@ class OddballParticle implements Particle
   int size;
   color clr;
   OddballParticle(){
-    clr=color(greyscale+(int)(Math.random()*40-20),greyscale+(int)(Math.random()*40-20),greyscale+(int)(Math.random()*40-20));
+    clr=color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
     x=(float)Math.random()*50+225;
     y=(float)Math.random()*50+225;
     speed=(float)Math.random()*6+1;
     angle=(float)Math.random()*360;
-    size=(int)(Math.random()*4+2);
+    size=(int)(Math.random()*10+10);
   }
   
   public void move(){
-    x+=(cos(angle)*speed)*Math.random();
+    x+=(cos(angle)*speed);
     y+=sin(angle)*speed;
+    x+=Math.random()*10-5;
   }
   public void show(){
     fill(clr);
@@ -93,5 +96,7 @@ class OddballParticle implements Particle
   public void reset(){
     x=mouseX;
     y=mouseY;
+    speed=(float)Math.random()*6+1;
+    angle=(float)Math.random()*360;
   }
 }
